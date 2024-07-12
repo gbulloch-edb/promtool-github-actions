@@ -39,7 +39,7 @@ function installPromtool {
     fi
   fi
 
-  
+
   url="https://github.com/prometheus/prometheus/releases/download/v${promtoolVersion}/prometheus-${promtoolVersion}.linux-amd64.tar.gz"
 
   echo "Downloading Promtool v${promtoolVersion}"
@@ -64,6 +64,7 @@ function main {
   scriptDir=$(dirname ${0})
   source ${scriptDir}/promtool_check_rules.sh
   source ${scriptDir}/promtool_check_config.sh
+  source ${scriptDir}/promtool_test_rules.sh
 
   parseInputs
   cd ${GITHUB_WORKSPACE}
@@ -77,6 +78,9 @@ function main {
       installPromtool
       promtoolCheckRules ${*}
       ;;
+    test)
+      installPromtool
+      promtoolTestRules ${*}
     *)
       echo "Error: Must provide a valid value for promtool_subcommand"
       exit 1
