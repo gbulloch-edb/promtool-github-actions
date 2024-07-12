@@ -81,6 +81,7 @@ function main {
     test)
       installPromtool
       promtoolTestRules ${*}
+      ;;
     *)
       echo "Error: Must provide a valid value for promtool_subcommand"
       exit 1
